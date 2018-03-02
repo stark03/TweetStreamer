@@ -14,6 +14,8 @@ class StreamListener(tweepy.StreamListener):
 
 		if (time.time() - self.start) < self.limit:
 			
+
+
 			if hasattr(status, 'retweeted_status') and status.retweeted_status:
 				return 	
 			k = Tweet.objects.create(
@@ -27,13 +29,25 @@ class StreamListener(tweepy.StreamListener):
 			
 			)
 			
-			t = Tweet.objects.get(user = status.user.id)
-			if t:	
+			try:
+				t = User.objects.filter(identity = status.user.id).count()
+				if t:	
+					print("here")
+					pass
+				else:
+					u = User.objects.create(
+						identity = status.user.id,
+						name = status.user.name,
+						screen_name = status.user.screen_name,
+						followers_count = status.user.followers_count,
+						statuses_count = status.user.statuses_count,	
+						friends_count = status.user.friends_count,
+						url = status.user.url,
+						description = status.user.description,
+						location = status.user.location,
+					)
+			except User.DoesNotExist :
 				pass
-			else:
-				u = User.objects.create(
-					Id = status.user.id
-				)	
 			return True
 		else:
 			return False

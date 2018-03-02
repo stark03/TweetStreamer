@@ -4,7 +4,8 @@ from Streamer import views
 
 urlpatterns = [
 	
-	url(r'^tweet/$', views.ClassBasedView.as_view(), name = 'tweet'),
+	url(r'^tweets/$', views.TweetsView.as_view(), name = 'tweets'),
+	url(r'^users/$', views.UsersView.as_view(), name = 'users'),
 	path('keyword/<str:keyword>/', views.StreamTweetsWithKeyword),
 
 ]
