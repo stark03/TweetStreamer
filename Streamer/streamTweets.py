@@ -4,6 +4,7 @@ from .models import Tweet,User
 
 class StreamListener(tweepy.StreamListener):
 	
+	"""Self-defined Class inheriting the StreamListener class"""	
 	def __init__(self, time_limit, keyword):
 		self.start = time.time()
 		self.limit = time_limit
@@ -11,12 +12,15 @@ class StreamListener(tweepy.StreamListener):
 		super(StreamListener, self).__init__()
 
 	def on_status(self, status):
-
+		
+		"""Creates Tweet, User models based on the tweets being streamed using the given keyword"""
 		if (time.time() - self.start) < self.limit:
-			
+			"""checks whether the time of streaming the tweets is under limit or not, 
+			   if yes continues to stream, else stops"""
 
 
 			if hasattr(status, 'retweeted_status') and status.retweeted_status:
+				"""Removes the retweets, hence removing duplicates"""
 				return 	
 			k = Tweet.objects.create(
 				keyword = self.keyword,
@@ -30,6 +34,8 @@ class StreamListener(tweepy.StreamListener):
 			)
 			
 			try:
+				"""Checks whether the User of the streamed tweet is in User table or not, 
+				   if yes, ignores, else creates a new entry in the table"""
 				t = User.objects.filter(identity = status.user.id).count()
 				if t:	
 					print("here")
@@ -53,5 +59,6 @@ class StreamListener(tweepy.StreamListener):
 			return False
 
 	def on_error(self,status_code):
+		"""Disconnects if rate limited """
 		if(status_code == 420):
 			return False
