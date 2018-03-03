@@ -19,6 +19,11 @@ access and analysis.
 2. Make sure python3.5+ is installed.
 3. Install the requirements listed in requirements.txt
 
+### Twitter Authentication :-
+
+1. Open file **private.py** in subdirectory **Streamer**
+2. Replace your-keys* , your-tokens* with your authentication keys and access tokens.
+
 ### Creating Database and establishing the server
 Open the terminal and enter:- 
 
