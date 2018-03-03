@@ -3,8 +3,3 @@ pip3 install django==2.0.2
 pip3 install tweepy==3.5.0
 pip3 install djangorestframework==3.7.7
 pip3 install django-filter
-
-
-
-
-
