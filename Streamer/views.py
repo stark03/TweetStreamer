@@ -63,7 +63,7 @@ def exportAsCSV(request):
 	imp_fields = ['created_at', 'text', 'retweet_count', 'favorite_count']
 	writer = csv.writer(response)
 	writer.writerow(imp_fields)
-	q = Tweet.objects.all()
+	q = Tweet.objects.all()		#Can add anyqueryset in place of q
 	for x in q:
 		writer.writerow([
 			x.created_at,
