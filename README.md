@@ -28,7 +28,7 @@ access and analysis.
 Open the terminal and enter:- 
 
 ```emacs
-$ cd Innovacer-HackerCamp-Submission2018
+$ cd TweetStreamer
 $ python3 manage.py makemigrations
 $ python3 manage.py migrate
 $ python3 manage.py runserver
