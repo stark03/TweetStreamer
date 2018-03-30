@@ -1,4 +1,4 @@
-# Innovacer-HackerCamp-Submission2018
+# Tweet Streamer
 
 ### A Django REST API for storing/fethching tweets for a high traffic event
 
